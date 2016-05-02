@@ -25,6 +25,6 @@ kernel:
 	cp -a ${KERNEL}/.config kernel-patches/config-CX9020
 
 kernel-debs:
-	cd ${KERNEL} && CONCURRENCY_LEVEL=$(nproc) DEB_HOST_ARCH=armhf fakeroot make-kpkg --append-to-version .cx9020 --revision `date +%Y%m%d%H%M%S` --ARCH=arm --cross-compile ${CROSS_PREFIX} kernel_image kernel_headers
+	cd ${KERNEL} && CONCURRENCY_LEVEL=`getconf _NPROCESSORS_ONLN` DEB_HOST_ARCH=armhf fakeroot make-kpkg --append-to-version .cx9020 --revision `date +%Y%m%d%H%M%S` --ARCH=arm --cross-compile ${CROSS_PREFIX} kernel_image kernel_headers
 
 .PHONY: busybox dropbear glibc kernel install uboot prepare_disk install_rootfs install_small install_smallrootfs post_install install_debian
