@@ -10,7 +10,7 @@ before_install:
 - sudo rm /etc/apt/sources.list.d/google-chrome.list
 - sudo dpkg --add-architecture i386
 - sudo apt update -qq
-- sudo apt-get install -y multistrap qemu binfmt-support qemu-user-static mercurial libtool autoconf lib32z1 lib32ncurses5-dev lib32stdc++6 git make xz-utils bc wget
+- sudo apt-get install -y multistrap qemu binfmt-support qemu-user-static mercurial libtool autoconf lib32z1 lib32ncurses5-dev lib32stdc++6 git make xz-utils bc wget kernel-package
 - sudo sed -i "s/\$forceyes //" /usr/sbin/multistrap
 - ./tools/install_linaro_gcc.sh
 - ./tools/prepare_kernel.sh 4.1 12 13
