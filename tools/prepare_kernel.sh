@@ -17,9 +17,10 @@ RT_VERSION=${FULL_VERSION}-rt${3}
 REPO=kernel
 
 # clone a clean linux-rt-devel repository
-git clone git://git.kernel.org/pub/scm/linux/kernel/git/rt/linux-rt-devel.git ${REPO} ${GIT_CLONE_ARGS}
+#git clone git://git.kernel.org/pub/scm/linux/kernel/git/rt/linux-rt-devel.git ${REPO} ${GIT_CLONE_ARGS}
+git clone --depth 1 --branch "v${RT_VERSION}" git://git.kernel.org/pub/scm/linux/kernel/git/rt/linux-rt-devel.git ${REPO} ${GIT_CLONE_ARGS}
 pushd ${REPO}
-git checkout -b dev-${RT_VERSION} v${RT_VERSION}
+#git checkout -b dev-${RT_VERSION} v${RT_VERSION}
 
 # apply cx9020 patches
 git am < ../kernel-patches/0001-clk-imx5-ipu_di_sel-clocks-can-set-parent-rates.patch
