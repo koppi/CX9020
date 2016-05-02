@@ -18,7 +18,7 @@ uboot:
 
 kernel-oldconfig:
 	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} oldconfig
-#	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} menuconfig
+	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} menuconfig
 	cp -a ${KERNEL}/.config kernel-patches/config-CX9020
 
 kernel:
