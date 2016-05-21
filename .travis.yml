@@ -14,4 +14,5 @@ before_install:
 - sudo sed -i "s/\$forceyes //" /usr/sbin/multistrap
 - ./tools/install_linaro_gcc.sh
 - ./tools/prepare_kernel.sh 4.1 12 13
+- cp kernel-patches/config-CX9020 kernel/.config
 script: make kernel-debs
