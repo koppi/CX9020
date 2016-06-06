@@ -3,7 +3,7 @@ KERNEL=kernel
 UBOOT=u-boot
 
 CROSS_PATH=$(shell pwd)/tools/gcc-linaro-arm-linux-gnueabihf-4.9-2014.09_linux/bin
-CROSS_PREFIX=$(shell pwd)/tools/gcc-linaro-arm-linux-gnueabihf-4.9-2014.09_linux/bin/arm-linux-gnueabihf-
+CROSS_PREFIX="ccache $(shell pwd)/tools/gcc-linaro-arm-linux-gnueabihf-4.9-2014.09_linux/bin/arm-linux-gnueabihf-"
 
 etherlab:
 	cd ${ETHERLAB} && ./configure --host=arm-linux-gnueabihf --with-linux-dir=`pwd`/../${KERNEL} --disable-generic --disable-8139too --disable-eoe --disable-tool --enable-ccat PATH=${CROSS_PATH}:${PATH}
