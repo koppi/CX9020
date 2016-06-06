@@ -20,9 +20,12 @@ kernel:
 	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} oldconfig
 #	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} menuconfig
 	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} -j$(nproc)
-	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} modules
-	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} imx53-cx9020.dtb
-	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} bindeb-pkg -j$(nproc)
+	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} -j$(nproc) modules
+	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} -j$(nproc) imx53-cx9020.dtb
+	cp -a ${KERNEL}/.config kernel-patches/config-CX9020
+
+kernel-deb
+	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} -j$(nproc) deb-pkg
 	cp -a ${KERNEL}/.config kernel-patches/config-CX9020
 
 .PHONY: busybox dropbear glibc kernel install uboot prepare_disk install_rootfs install_small install_smallrootfs post_install install_debian
