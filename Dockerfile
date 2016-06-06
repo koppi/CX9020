@@ -1,4 +1,4 @@
-FROM mk-builder:jessie-armhf
+FROM machinekit/mk-builder:jessie-armhf
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN sudo apt-get update && sudo apt-get install -y mercurial libtool autoconfgit make xz-utils bc wget
