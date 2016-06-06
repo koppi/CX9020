@@ -8,5 +8,5 @@ wget http://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz
 tar xfv libtool-2.4.6.tar.gz
 cd libtool-2.4.6/
 ./configure --prefix=`pwd`/gcc-linaro-arm-linux-gnueabihf-4.9-2014.09_linux --host=arm-linux-gnueabihf --program-prefix=arm-linux-gnueabihf-
-make
+make -j$(nproc)
 make install
