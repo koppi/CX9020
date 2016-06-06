@@ -1,7 +1,7 @@
 FROM machinekit/mk-builder:jessie-armhf
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN sudo apt-get update && sudo apt-get install -y mercurial libtool autoconfgit make xz-utils bc wget
+RUN su - apt-get update && su - apt-get install -y mercurial libtool autoconfgit make xz-utils bc wget
 
 RUN git clone https://github.com/koppi/CX9020
 RUN git checkout mk
