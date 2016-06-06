@@ -14,14 +14,15 @@ etherlab:
 uboot:
 	cd ${UBOOT} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} distclean
 	cd ${UBOOT} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} mx53cx9020_defconfig
-	cd ${UBOOT} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX}
+	cd ${UBOOT} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} -j$(nproc)
 
 kernel:
 	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} oldconfig
 #	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} menuconfig
-	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX}
+	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} -j$(nproc)
 	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} modules
 	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} imx53-cx9020.dtb
+	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} bindeb-pkg -j$(nproc)
 	cp -a ${KERNEL}/.config kernel-patches/config-CX9020
 
 .PHONY: busybox dropbear glibc kernel install uboot prepare_disk install_rootfs install_small install_smallrootfs post_install install_debian
