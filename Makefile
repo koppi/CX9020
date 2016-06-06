@@ -24,7 +24,7 @@ kernel:
 	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} -j$(nproc) imx53-cx9020.dtb
 	cp -a ${KERNEL}/.config kernel-patches/config-CX9020
 
-kernel-deb
+kernel-deb:
 	cd ${KERNEL} && make ARCH=arm CROSS_COMPILE=${CROSS_PREFIX} -j$(nproc) deb-pkg
 	cp -a ${KERNEL}/.config kernel-patches/config-CX9020
 
