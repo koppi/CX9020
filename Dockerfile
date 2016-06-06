@@ -1,11 +1,11 @@
-FROM ubuntu:14.04
+FROM mk-builder:jessie-armhf
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN sudo dpkg --add-architecture i386; sudo apt-get update && sudo apt-get install -y multistrap qemu binfmt-support qemu-user-static mercurial libtool autoconf lib32z1 lib32ncurses5-dev lib32stdc++6 git make xz-utils bc wget
+RUN sudo apt-get update && sudo apt-get install -y mercurial libtool autoconfgit make xz-utils bc wget
 
-RUN git clone https://github.com/koppi/CX9020 
+RUN git clone https://github.com/koppi/CX9020
+RUN git checkout mk
 
-RUN cd CX9020 && ./tools/install_linaro_gcc.sh
 RUN cd CX9020 && ./tools/prepare_uboot.sh v2015.07
 RUN cd CX9020 && make uboot
 RUN cd CX9020 && ./tools/prepare_kernel.sh 4.1 12 13
